@@ -33,12 +33,16 @@ final class MovieController extends AbstractController
     #[Route('/movie/{id}', name: 'show_movie', methods:['GET'])]
     public function show(int $id): Response
     {
-        $movie = $this->movies[$id];
-
-        return $this->render('movie/show.html.twig', [
-            'movie' => $movie,
-        ]);
+    if (!isset($this->movies[$id])) {
+        throw $this->createNotFoundException(sprintf('Movie with id %d not found', $id));
     }
+
+    $movie = $this->movies[$id];
+
+    return $this->render('movie/show.html.twig', [
+        'movie' => $movie,
+    ]);
+}
 
     
 }
