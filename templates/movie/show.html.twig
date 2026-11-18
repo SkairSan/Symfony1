@@ -8,9 +8,13 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 <div class="example-wrapper">
-    <h1>{{ movie.title }}</h1>
-    {{ movie.year }}<br><br>
-    {{ movie.desc }}<br>
+    {% if movie != null %}
+        <h1>{{ movie.title }}</h1>
+        {{ movie.year }}<br><br>
+        {{ movie.desc }}<br>
+    {% else %}
+        <h1>Movie {{ id }} not found</h1>
+    {% endif %}
     <a href="/movie">Back to main page</a>
 </div>
 {% endblock %}
