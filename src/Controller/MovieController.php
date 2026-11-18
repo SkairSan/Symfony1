@@ -34,7 +34,10 @@ final class MovieController extends AbstractController
     public function show(int $id): Response
     {
     if (!isset($this->movies[$id])) {
-        throw $this->createNotFoundException(sprintf('Movie with id %d not found', $id));
+        return $this->render('movie/show.html.twig', [
+            'movie' => null,
+            'id' => $id,
+        ]);
     }
 
     $movie = $this->movies[$id];
